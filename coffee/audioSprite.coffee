@@ -120,3 +120,50 @@ Track::pause = ->
 	clearInterval(track.timer)
 	track.playing = false
 
+
+# TODO
+/**
+ * Audio Sprite Player
+ * @param {Object} option src, n, spriteLength, audioLead, trimTime
+ *
+ * Usage:
+ * var player = new ws.se.Player({option});
+ * player.play(position);
+ *
+ */
+Player = (option) ->
+	var tracks = [],
+		n = option.n,
+		total = option.n,
+		i;
+
+	while (n--) {
+		tracks.push(new ws.se.Track(option.src, option.spriteLength, option.audioLead, option.trimTime));
+	}
+
+	return {
+		tracks: tracks,
+		play: function (position) {
+			if (isNaN(position) || position === null || position === 'undefined') { return; }
+
+			var i = total,
+				track = null;
+				
+			while (i--) {
+				if (tracks[i].playing === false) {
+					track = tracks[i];
+					break;
+				} else if (track === null || tracks[i].lastUsed < track.lastUsed) {
+					track = tracks[i];
+				}
+			}
+			
+			if (track) {
+				track.play(position - 1);
+			} else {
+				// console.log('could not find a track to play :(');
+				//
+			}
+		}
+	};
+
