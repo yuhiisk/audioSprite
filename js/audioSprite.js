@@ -2,6 +2,8 @@
  * audioSprite.js
  * @author Youhei Isokawa
  * @license MIT Lisence
+ * 
+ * The extension based on http://remysharp.com/2010/12/23/audio-sprites/
 */
 
 
@@ -123,7 +125,7 @@
    * Usage:
    * var player = new audioSprite({
    *   src: 'path/audio.mp3',
-   *   spriteLength: 1,
+   *   spriteLength: 4,
    *   trimTime: 0.1
    * });
    *
